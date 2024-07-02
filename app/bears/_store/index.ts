@@ -1,8 +1,16 @@
-import { createStore } from "zustand";
-interface states {
-    bears : number;
+// Directory: /app/bears/_store/index.ts
+import { create } from 'zustand';
+
+// State types
+interface States {
+  bears: number,
+  increment:  () => void,
+  decrement:  () => void,
 }
 
-export const useBearsStore = createStore<states>(() => ({
-    bears: 0,
-}))
+// useBearStore
+export const useBearStore = create<States>((set) => ({
+  bears: 0,
+  increment: () => set((state) => ({ bears: state.bears + 1 })),
+  decrement: () => set((state) => ({ bears: state.bears - 1 }))
+}));
